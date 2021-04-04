@@ -1,1 +1,1 @@
-worker: python photohunter.py $PORT
+worker: python3 photohunter.py $PORT
