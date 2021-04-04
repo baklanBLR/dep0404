@@ -28,14 +28,15 @@ def send_text(message):
                 datas['Password'] = os.environ["pa"]
                 url2 ='http://chita.en.cx/Login.aspx'
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
-                url = 'http://chita.en.cx//gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
+                url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
+                url4 = 'http://minsk.en.cx/gameengines/photoextreme/play/71552/?level=' + lev + '&isadditional=false&operation=add'
                 s = requests.Session()
                 loging = s.post(url2,data = datas)
                 f=open('ress.txt', mode = 'w+', encoding='utf-8')
                 f.write(loging.text)
                 f.close()
                 files = {"PhotoUploadOperation.UploadedPhoto": ("sen.jpg", open("sen.jpg", "rb"))}
-                r = s.post(url, files=files)
+                r = s.post(ur4, files=files)
                 print(numero)
         """print(r.text)
         print('Вроде выполнено')"""
