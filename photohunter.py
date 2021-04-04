@@ -1,5 +1,5 @@
 import telebot
-import config
+import os
 import json
 import traceback
 import requests
@@ -11,7 +11,7 @@ datas = {
     'Password' : 'def'
 }
 
-bot = telebot.TeleBot(config.TOKEN)
+bot = telebot.TeleBot(os.environ["tok"])
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     sss =  message.text.lower()
@@ -24,8 +24,8 @@ def send_text(message):
             numero = sss[7:]
             if numero.isdigit():
                 lev = numero   
-                datas['Login'] = config.login
-                datas['Password'] = config.passwd
+                datas['Login'] = os.environ["lo"]
+                datas['Password'] = os.environ["pa"]
                 url2 ='http://chita.en.cx/Login.aspx'
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
                 url = 'http://chita.en.cx//gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
