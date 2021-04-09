@@ -5,6 +5,7 @@ import os
 import json
 import traceback
 import requests
+import config
 class way33:
     pathup = ''
 
@@ -13,7 +14,7 @@ datas = {
     'Password' : 'def'
 }
 
-bot = telebot.TeleBot(os.environ["tok"])
+bot = telebot.TeleBot(config.TOKEN)
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     sss =  message.text.lower()
