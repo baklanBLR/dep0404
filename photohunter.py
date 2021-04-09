@@ -17,12 +17,12 @@ bot = telebot.TeleBot(os.environ["tok"])
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     sss =  message.text.lower()
-    if sss == "бот, ты тут?" :
-        bot.send_message(message.chat.id,"Тут, а что?")    
+    if sss == "here?" :
+        bot.send_message(message.chat.id,"Aga")    
     print(sss)
     if len(sss) > 7 :
         sss1 = sss[0:6]
-        if sss1 == 'залить':
+        if sss1 == 'upload':
             numero = sss[7:]
             if numero.isdigit():
                 lev = numero   
@@ -42,7 +42,7 @@ def send_text(message):
                 r = s.post(ur4, files=files)
                 print(numero)
         """print(r.text)
-        print('Вроде выполнено')"""
+        """
 
 
 
