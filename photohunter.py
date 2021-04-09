@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import telebot
 import os
 import json
@@ -30,6 +32,7 @@ def send_text(message):
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
                 url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
                 url4 = 'http://minsk.en.cx/gameengines/photoextreme/play/71552/?level=' + lev + '&isadditional=false&operation=add'
+                url5 = "http://gameengines/photoextreme/play/71552/?level=1&mediaid=613494&operation=editcomment"
                 s = requests.Session()
                 loging = s.post(url2,data = datas)
                 f=open('ress.txt', mode = 'w+', encoding='utf-8')
