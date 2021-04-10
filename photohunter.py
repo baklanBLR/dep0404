@@ -18,8 +18,7 @@ def send_text(message):
     sss =  message.text.lower()
     if sss == 'here?' :
         bot.send_message(message.chat.id,'Aga')    
-    print(sss)
-    if len(sss) > 7 :
+        if len(sss) > 7 :
         sss1 = sss[0:6]
         if sss1 == 'upload':
             numero = sss[7:]
@@ -39,8 +38,7 @@ def send_text(message):
                 f.close()
                 files = {'PhotoUploadOperation.UploadedPhoto': ('sen.jpg', open('sen.jpg', 'rb'))}
                 r = s.post(url4, files=files)
-                print(numero)
-        
+                     
 
 
 
