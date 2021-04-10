@@ -19,7 +19,7 @@ def send_text(message):
     sss1 = ''
     sss =  message.text.lower()
     
-    if sss == 'here?' :
+    if sss == 'Тут?' :
         bot.send_message(message.chat.id,'Aga!!!!!')    
     if len(sss) > 7 :
         sss1 = sss[0:6]
