@@ -18,6 +18,9 @@ bot = telebot.TeleBot('1694799489:AAENCJXThZJs-obJqyisOgDiViv2nA2VdPI')
 def send_text(message):
     sss1 = ''
     sss =  message.text.lower()
+    if sss == '/help':
+        bot.send_message(message.chat.id,'Cписок команд этого чудо-бота: \n /link - Загрузить ссылку  на игру.\n /login - ввести логин-пароль игрока. \n /up N - загрузить текущую фотку в уровень N. \n ') 
+    
     
     if sss == 'тут?' :
         bot.send_message(message.chat.id,'Aga!!!!!')    
@@ -27,9 +30,9 @@ def send_text(message):
             numero = sss[7:]
             if numero.isdigit():
                 lev = numero   
-                datas['Login'] = 'baklan'
-                datas['Password'] = '4644135baklan'
-                url2 ='http://minsk.en.cx/Login.aspx'
+                datas['Login'] = ''
+                datas['Password'] = ''
+                url2 ='http://30.en.cx/Login.aspx'
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
                 url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
                 url4 = 'http://minsk.en.cx/gameengines/photoextreme/play/71552/?level=' + lev + '&isadditional=false&operation=add'
