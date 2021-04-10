@@ -5,6 +5,7 @@ import os
 import json
 import traceback
 import requests
+import sys
 class way33:
     pathup = ''
 datas = {
@@ -17,10 +18,11 @@ bot = telebot.TeleBot('1694799489:AAENCJXThZJs-obJqyisOgDiViv2nA2VdPI')
 def send_text(message):
     sss1 = ''
     sss =  message.text.lower()
+    
     if sss == 'here?' :
         bot.send_message(message.chat.id,'Aga')    
-        if len(sss) > 7 :
-            sss1 = sss[0:6]
+    if len(sss) > 7 :
+        sss1 = sss[0:6]
         if sss1 == 'upload':
             numero = sss[7:]
             if numero.isdigit():
