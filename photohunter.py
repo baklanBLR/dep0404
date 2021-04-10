@@ -15,6 +15,7 @@ datas = {
 bot = telebot.TeleBot('1694799489:AAENCJXThZJs-obJqyisOgDiViv2nA2VdPI')
 @bot.message_handler(content_types=['text'])
 def send_text(message):
+    sss1 = ''
     sss =  message.text.lower()
     if sss == 'here?' :
         bot.send_message(message.chat.id,'Aga')    
