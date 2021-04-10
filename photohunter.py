@@ -17,8 +17,8 @@ bot = telebot.TeleBot('1694799489:AAENCJXThZJs-obJqyisOgDiViv2nA2VdPI')
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     sss =  message.text.lower()
-    if sss == "here?" :
-        bot.send_message(message.chat.id,"Aga")    
+    if sss == 'here?' :
+        bot.send_message(message.chat.id,'Aga')    
     print(sss)
     if len(sss) > 7 :
         sss1 = sss[0:6]
@@ -26,8 +26,8 @@ def send_text(message):
             numero = sss[7:]
             if numero.isdigit():
                 lev = numero   
-                datas['Login'] = "baklan"
-                datas['Password'] = "4644135baklan"
+                datas['Login'] = 'baklan'
+                datas['Password'] = '4644135baklan'
                 url2 ='http://chita.en.cx/Login.aspx'
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
                 url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
@@ -38,7 +38,7 @@ def send_text(message):
                 f=open('ress.txt', mode = 'w+', encoding='utf-8')
                 f.write(loging.text)
                 f.close()
-                files = {"PhotoUploadOperation.UploadedPhoto": ("sen.jpg", open("sen.jpg", "rb"))}
+                files = {'PhotoUploadOperation.UploadedPhoto': ('sen.jpg', open('sen.jpg', 'rb'))}
                 r = s.post(url4, files=files)
                 print(numero)
         """print(r.text)
@@ -61,7 +61,7 @@ def handle_docs_photo(message):
         src1=file_info.file_path;
         way33.pathup = src1;
             
-        with open("sen.jpg", 'wb') as new_file:
+        with open('sen.jpg', 'wb') as new_file:
             new_file.write(downloaded_file)
         bot.reply_to(message,way33.pathup) 
      except Exception as e:
