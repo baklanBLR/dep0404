@@ -7,7 +7,6 @@ import traceback
 import requests
 class way33:
     pathup = ''
-
 datas = {
     'Login' : 'def',
     'Password' : 'def'
