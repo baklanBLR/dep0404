@@ -41,8 +41,7 @@ def send_text(message):
                 files = {'PhotoUploadOperation.UploadedPhoto': ('sen.jpg', open('sen.jpg', 'rb'))}
                 r = s.post(url4, files=files)
                 print(numero)
-        """print(r.text)
-        """
+        
 
 
 
