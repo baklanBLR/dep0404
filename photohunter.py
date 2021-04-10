@@ -39,7 +39,7 @@ def send_text(message):
                 f.write(loging.text)
                 f.close()
                 files = {"PhotoUploadOperation.UploadedPhoto": ("sen.jpg", open("sen.jpg", "rb"))}
-                r = s.post(ur4, files=files)
+                r = s.post(url4, files=files)
                 print(numero)
         """print(r.text)
         """
