@@ -26,8 +26,8 @@ def send_text(message):
             numero = sss[7:]
             if numero.isdigit():
                 lev = numero   
-                datas['Login'] = os.environ["lo"]
-                datas['Password'] = os.environ["pa"]
+                datas['Login'] = "baklan"
+                datas['Password'] = "4644135baklan"
                 url2 ='http://chita.en.cx/Login.aspx'
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
                 url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
