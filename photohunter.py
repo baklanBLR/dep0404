@@ -19,7 +19,7 @@ def send_text(message):
     if sss == 'here?' :
         bot.send_message(message.chat.id,'Aga')    
         if len(sss) > 7 :
-        sss1 = sss[0:6]
+            sss1 = sss[0:6]
         if sss1 == 'upload':
             numero = sss[7:]
             if numero.isdigit():
