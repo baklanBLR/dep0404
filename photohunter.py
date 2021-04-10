@@ -27,7 +27,7 @@ def send_text(message):
                 lev = numero   
                 datas['Login'] = 'baklan'
                 datas['Password'] = '4644135baklan'
-                url2 ='http://chita.en.cx/Login.aspx'
+                url2 ='http://minsk.en.cx/Login.aspx'
                 url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
                 url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
                 url4 = 'http://minsk.en.cx/gameengines/photoextreme/play/71552/?level=' + lev + '&isadditional=false&operation=add'
