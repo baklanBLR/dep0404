@@ -14,6 +14,8 @@ class PHOTOGAME:
     Tip = ''
     levels  = []
     Number = ''
+    reglink =''
+    test = "Нихуя не помню"
 datas = {
     'Login' : 'def',
     'Password' : 'def',
@@ -22,6 +24,7 @@ slovo = 'Г'
 typegame = ''
 photo = ''
 tagg = ">Фото"
+
 bot = telebot.TeleBot('1694799489:AAENCJXThZJs-obJqyisOgDiViv2nA2VdPI')
 @bot.message_handler(content_types=['text'])
 def send_text(message):
@@ -29,13 +32,15 @@ def send_text(message):
     sss1 = ''
     sss =  message.text.lower()
     if sss == '/help':
-        bot.send_message(message.chat.id,'Cписок команд этого чудо-бота: \n /link - Загрузить ссылку  на игру.\n /login - ввести логин-пароль игрока. \n /up N - загрузить текущую фотку в уровень N. \n ') 
+        bot.send_message(message.chat.id,'Cписок команд этого чудо-бота: \n /link - Загрузить ссылку  на игру.\n /login - ввести логин игрока. \n /pass - ввести пароль игрка \n /up N - загрузить текущую фотку в уровень N. \n /levs показать список уровней текущей игры') 
     if sss[0:6] == '/link ':
         slovo ="Гпорпопо"
         PHOTOGAME.MainLink = sss[6:]
+        PHOTOGAME.reglink = PHOTOGAME.MainLink[:PHOTOGAME.MainLink.find('.',1,len(PHOTOGAME.MainLink))] + '.en.cx/Login.aspx'
+       # bot.send_message(message.chat.id,PHOTOGAME.reglink)
        # bot.send_message(message.chat.id,datas['Game'])   
         
-        
+     
         ###### Из HTML страницы с игрой получаем ее тип ########
         link = urllib.request.urlopen(PHOTOGAME.MainLink)
         
@@ -60,31 +65,72 @@ def send_text(message):
         PHOTOGAME.InLink = PHOTOGAME.MainLink[:ind1 + 2] + 'gameengines/' + PHOTOGAME.Typegame + '/play/' +PHOTOGAME.Number
         bot.send_message(message.chat.id, PHOTOGAME.InLink)
     ######################################################################
+    if sss == '/set mainbot':
+       datas['Login'] = 'uploader'
+       datas['Password'] = 'pass4thisbot'
+       bot.send_message(message.chat.id, 'Добавьте в команду бота под ником uploader (id 1275352)')
+    if sss== 'вспомнить':
+        bot.send_message(message.chat.id, PHOTOGAME.test)
+    if sss== 'бетон':
+        PHOTOGAME.test = "я запомнил слово бетон"
+        
     if sss[0:7] == '/login ':
         datas['Login'] = sss[7:]
+        bot.send_message(message.chat.id, datas['Login'])
     if sss[0:6] == '/pass ':
         datas['Password'] = sss[6:]        
-        
+       
     if sss[0:4] == '/up ':
+        numero = ''
         numero = sss[4:]
         if numero.isdigit():
             lev = numero   
-            url2 ='http://30.en.cx/Login.aspx'
-            url3 = 'http://chita.en.cx/Administration/Games/FileUploader.aspx?gid=71160'
-            url = 'http://chita.en.cx/gameengines/photohunt/play/71160/?level='+ lev + '&isadditional=false&operation=add'
-            url4 = 'http://minsk.en.cx/gameengines/photoextreme/play/71552/?level=' + lev + '&isadditional=false&operation=add'
+            url2 = PHOTOGAME.reglink
+            urlbase = '/?level=' + lev + '&isadditional=false&operation=add'
             url5 = 'http://gameengines/photoextreme/play/71552/?level=1&mediaid=613494&operation=editcomment'
             urlmain = PHOTOGAME.InLink
             s = requests.Session()
             loging = s.post(url2,data = datas)
-            files = {'PhotoUploadOperation.UploadedPhoto': ('sen.jpg', open('sen.jpg', 'rb'))}
-            r = s.post(urlmain, files=files)
-    if sss[0:4] == '/levs':
-        url2 ='http://30.en.cx/Login.aspx'
+            files = {'PhotoUploadOperation.UploadedPhoto': ('sen2.jpg', open('sen2.jpg', 'rb'))}
+            ##bot.send_message(message.chat.id,urlmain + urlbase)
+            r = s.post(urlmain + urlbase, files=files)
+           
+    ## По команде получаем список уровней в игре и выдаем пользователю
+    if sss == '/levs':
+        li = 0
+        lev = 'Нихуя не нашел'
+       ## datas['Login'] = 'baklan'
+        ##datas['Password'] = '4644135baklan'
+        ##PHOTOGAME.InLink = 'http://minsk.en.cx/gameengines/photoextreme/play/71552'
+       ## bot.send_message(message.chat.id, datas['Login']  + "   " + datas['Password'])
+                ##url2 = PHOTOGAME.InLink
         s = requests.Session()
-        loging = s.post(url2,data = datas)
-
-
+        loging = s.post(PHOTOGAME.reglink,data = datas)
+        ##link = urllib.request.urlopen(PHOTOGAME.InLink)
+        link = s.get(PHOTOGAME.InLink)
+        key2 = link.text.find('<ul class="level"',1, len(link.text))
+        key1 = 0
+        key0 = 0
+        li = 0
+        i = 0
+        ur = 0
+        while  key0 != -1:
+            
+            i = 0
+            key0 = link.text.find('<li class',key2 + 1, len(link.text))      
+            key1 = link.text.find('vel=',key0 + 1, len(link.text)) 
+            while link.text[key1 + 5].isdigit():
+                key1 = key1 + 1
+                i = i + 1
+            key2 = link.text.find('</a>',key1 + 1, len(link.text)) 
+            if link.text[key1 + 7:key2] :
+                ur = ur + 1
+                bot.send_message(message.chat.id, str(ur)  + ')   ' + link.text[key1 + 7 + i:key2])
+             ##PHOTOGAME.levels.append(link.text[key1:key2])
+            li = li + 1
+        ##bot.send_message(message.chat.id, PHOTOGAME.levels)
+      
+        
 
 
 
@@ -100,11 +146,11 @@ def handle_docs_photo(message):
 
         src=file_info.file_path;
         src1=file_info.file_path;
-        way33.pathup = src1;
+        
             
-        with open('sen.jpg', 'wb') as new_file:
+        with open('sen2.jpg', 'wb') as new_file:
             new_file.write(downloaded_file)
-        bot.reply_to(message,way33.pathup) 
+        ##bot.reply_to(message,way33.pathup) 
      except Exception as e:
          bot.reply_to(message,e )
 bot.polling()
