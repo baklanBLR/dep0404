@@ -10,7 +10,13 @@ import sys
 import urllib.request
 from bs4 import BeautifulSoup
 import re
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
    
+
 class PHOTOGAME:
     MainLink = 'https://oren.en.cx/GameDetails.aspx?gid=74782'
     ind1 = MainLink.find('x/', 0 ,-1)
@@ -23,6 +29,18 @@ class PHOTOGAME:
     Number = '1'
     reglink =MainLink[:MainLink.find('.',1,len(MainLink))] + '.en.cx/Login.aspx'
     
+
+
+
+def calcluator(marka, dostavka, m3, abn):
+    itog = 0
+    cena = 0
+    abnp = 0
+    if (m3 < 18):
+        itog = cena * m3 + dostavka * 18 
+
+    return(itog+ abnp)
+
 
 def dost(mesto):
     wrongname = "Что-то такого названия нет у меня в прайсе"
@@ -130,7 +148,7 @@ def dost(mesto):
 'береговая горка',	1100,
 'зеленый холм',	1100,
 'три берега',	700,
-'озерки р',	700,
+'озерки р',	999,
 'озерки',	1100,
 'солнечный  мыс',	1100,
 'лужки',	1200,
@@ -278,6 +296,21 @@ def send_text(message):
     if sss[0:6] == '/pass ':
         datas['Password'] = sss[6:]        
        
+    if  'tps://yandex.ru/m' in sss:
+        browser = webdriver.Chrome()
+        browser.get(sss)
+        delay = 5 # seconds
+        try:
+            myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.ID, 'zoom-control')))
+            print ("Page is ready!")
+            browser.save_screenshot('d:/skrin.png')
+        except TimeoutException:
+            print ("Loading took too much time!")
+        browser.save_screenshot('d:/skrin.png')
+
+        browser.quit()
+        bot.send_photo(message.chat.id, photo = open("d:/skrin.png","rb"))
+
     if sss[0:3].lower() == '!д ':
         kudago = sss[3:]
         kudago = kudago.lower()
